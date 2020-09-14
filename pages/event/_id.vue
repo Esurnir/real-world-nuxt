@@ -5,13 +5,15 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
+import MetaInfo from "vue-meta";
+
 export default Vue.extend({
   computed: {
     id(): string {
       return this.$route.params.id;
     },
   },
-  head() {
+  head(): MetaInfo {
     return {
       title: "Event #" + this.id,
       meta: [
