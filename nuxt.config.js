@@ -61,4 +61,11 @@ export default {
    ** See https://nuxtjs.org/api/configuration-build/
    */
   build: {},
+  typescript: {
+    typeCheck: {
+      eslint: {
+        files: "./**/*.{ts,js,vue}",
+      },
+    },
+  },
 };
