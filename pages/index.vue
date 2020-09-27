@@ -17,27 +17,32 @@ import EventCard from "~/components/EventCard.vue";
 
 export default Vue.extend({
   components: {
-    EventCard,
+    EventCard
   },
-  asyncData({ $axios, error }) {
-    return $axios
-      .get("http://localhost:3000/events")
-      .then((response) => {
-        return {
-          events: response.data as Event[],
-        };
-      })
-      .catch(() => {
-        error({
-          statusCode: 503,
-          message: "Unable to fetch events at this time. Please try again.",
-        });
+  async asyncData({ $axios, error }) {
+    try {
+      const { data } = await $axios.get<Event[]>(
+        "http://localhost:3000/events"
+      );
+      return {
+        events: data
+      };
+    } catch (e) {
+      error({
+        statusCode: 503,
+        message: "Unable to fetch events at this time. Please try again."
       });
+    }
+  },
+  data() {
+    return {
+      events: [] as Event[]
+    };
   },
   head() {
     return {
-      title: "Event Listing",
+      title: "Event Listing"
     };
-  },
+  }
 });
 </script>
