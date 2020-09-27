@@ -11,7 +11,7 @@ import NavBar from "~/components/NavBar.vue";
 
 export default Vue.extend({
   components: {
-    NavBar,
+    NavBar
   },
   head() {
     return {
@@ -21,11 +21,11 @@ export default Vue.extend({
           hid: "description",
           name: "description",
           content:
-            "Where you can find all the events taking place in your neighborhood",
-        },
-      ],
+            "Where you can find all the events taking place in your neighborhood"
+        }
+      ]
     };
-  },
+  }
 });
 </script>
 

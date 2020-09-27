@@ -34,8 +34,8 @@ export default Vue.extend({
     error: {
       // <--- Send in the error
       type: Object as PropType<ErrorProp | null>,
-      default: null,
-    },
+      default: null
+    }
   },
   computed: {
     statusCode(): number {
@@ -45,12 +45,12 @@ export default Vue.extend({
     message(): string {
       // <--- Print the error
       return (this.error && this.error.message) || "Server Error";
-    },
+    }
   },
   head(): MetaInfo {
     return {
-      title: this.message, // <--- Set the SEO title
+      title: this.message // <--- Set the SEO title
     };
-  },
+  }
 });
 </script>

@@ -13,10 +13,10 @@ export default Vue.extend({
         {
           hid: "description",
           name: "description",
-          content: "You can create a new event in your neighbourhood",
-        },
-      ],
+          content: "You can create a new event in your neighbourhood"
+        }
+      ]
     };
-  },
+  }
 });
 </script>

@@ -18,15 +18,15 @@ export default Vue.extend({
   props: {
     event: {
       type: Object as PropType<Event>,
-      required: true,
-    },
+      required: true
+    }
   },
   computed: {
     parsedDate(): string {
       const eventDate = new Date(this.event.date);
       return eventDate.toDateString();
-    },
-  },
+    }
+  }
 });
 </script>
 <style scoped>
