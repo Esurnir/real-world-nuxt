@@ -13,14 +13,9 @@ interface Data {
 }
 
 export default Vue.extend({
-  async asyncData({ $axios, error, params }): Promise<Data | void> {
+  async fetch({ store, error, params }) {
     try {
-      const { data } = await $axios.get<Event>(
-        "http://localhost:3000/events/" + params.id
-      );
-      return {
-        event: data
-      };
+      await store.dispatch("events/fetchEvent", params.id);
     } catch (e) {
       error({
         statusCode: 503,
@@ -31,10 +26,10 @@ export default Vue.extend({
       });
     }
   },
-  data() {
-    return {
-      event: undefined
-    } as Data;
+  computed: {
+    event() {
+      return this.$accessor.events.event;
+    }
   },
   head(): MetaInfo {
     return {

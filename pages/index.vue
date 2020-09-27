@@ -12,21 +12,15 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-import { Event } from "~/types/event";
 import EventCard from "~/components/EventCard.vue";
 
 export default Vue.extend({
   components: {
     EventCard
   },
-  async asyncData({ $axios, error }) {
+  async fetch({ store, error }) {
     try {
-      const { data } = await $axios.get<Event[]>(
-        "http://localhost:3000/events"
-      );
-      return {
-        events: data
-      };
+      await store.dispatch("events/fetchEvents");
     } catch (e) {
       error({
         statusCode: 503,
@@ -34,10 +28,10 @@ export default Vue.extend({
       });
     }
   },
-  data() {
-    return {
-      events: [] as Event[]
-    };
+  computed: {
+    events() {
+      return this.$accessor.events.events;
+    }
   },
   head() {
     return {
